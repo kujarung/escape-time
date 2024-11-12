@@ -1,7 +1,8 @@
 import { AvailableBook } from '@/components/dpsnnn/AvailableBook';
 import { EarliestTime } from '@/components/dpsnnn/EarliestTime';
-import { ExcludeSelector } from '@/components/dpsnnn/ExcludeSelector';
+import { InARowBookingTimeTable } from '@/components/dpsnnn/InARowBookingTimeTable';
 import { dpsnnnCrawler } from '@/service/crawler';
+import { Suspense } from 'react';
 
 const parseSearchParams = (searchParams: string | undefined): string[] => {
   if (!searchParams || searchParams.trim() === '') {
@@ -16,12 +17,11 @@ export default async function DpsnnnPage({
 }: {
   searchParams: { include?: string };
 }) {
-  const { gBookingAbleData, ssBookingAbleData } = await dpsnnnCrawler();
+  // const { gBookingAbleData, ssBookingAbleData } = await dpsnnnCrawler();
 
   return (
-    <div>
-      <ExcludeSelector />
-      <EarliestTime
+    <Suspense>
+      {/* <EarliestTime
         gBookingAbleData={gBookingAbleData}
         ssBookingAbleData={ssBookingAbleData}
         include={parseSearchParams(searchParams.include)}
@@ -31,6 +31,9 @@ export default async function DpsnnnPage({
         gBookingAbleData={gBookingAbleData}
         ssBookingAbleData={ssBookingAbleData}
       />
-    </div>
+
+      <InARowBookingTimeTable ssBookingAbleData={ssBookingAbleData} /> */}
+      ddpss
+    </Suspense>
   );
 }

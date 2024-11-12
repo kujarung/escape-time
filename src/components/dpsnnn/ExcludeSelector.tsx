@@ -1,8 +1,6 @@
 'use client';
 import { dpsnnnSThemeType, dpsnnnGThemeType } from '@/service/crawler';
-import { Button, Select } from 'antd';
 import { useSearchParams } from 'next/navigation';
-import { Space } from 'antd';
 
 export const ExcludeSelector = () => {
   const searchParams = useSearchParams();
@@ -33,12 +31,9 @@ export const ExcludeSelector = () => {
   }));
 
   return (
-    <Space>
-      <Select
+    <>
+      <select
         style={{ width: 350 }}
-        mode="multiple"
-        allowClear
-        placeholder="포함 할 테마를 선택해주세요."
         defaultValue={Object.entries({
           ...dpsnnnSThemeType,
           ...dpsnnnGThemeType,
@@ -47,13 +42,9 @@ export const ExcludeSelector = () => {
           .filter((i) =>
             (include || []).length > 0 ? include?.includes(i) : true
           )}
-        options={options}
-        onChange={handleChange}
       />
 
-      <Button type="primary" onClick={() => window.location.reload()}>
-        검색
-      </Button>
-    </Space>
+      <button onClick={() => window.location.reload()}>검색</button>
+    </>
   );
 };
